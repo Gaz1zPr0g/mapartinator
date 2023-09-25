@@ -4,7 +4,7 @@ import PySimpleGUI as sg
 import os.path
 import math
 
-
+# All the colors that can be showed on the map
 carpets = [
     #R    G    B    ID
     (25,  25,  25,  29),
@@ -151,13 +151,33 @@ silkTouch = [
 ]
 
 
-
 def get_RGB_sum(rgbl):
     return rgbl[0] + rgbl[1] + rgbl[2]
 
-# creating a window
+
+# returns tuple of (width, height)
+def get_image_size(fname):
+    im = Image.open(fname)
+    return im.size
+
+
+# returns RGB pixels matrix
+def get_image_pixels(fname):
+    im = Image.open(fname)
+    rgbim = im.convert("RGB")
+    pixarr = [[0 for j in range(im.size[1])] for i in range(im.size[0])]
+
+
+    for i in range(rgbim.size[0]):
+        for j in range(rgbim.size[1]):
+            pixarr[i][j] = rgbim.getpixel((i, j))
+    return pixarr
+
+
 def create_window():
     sg.theme("dark grey 11")
+
+    # text and checkboxes layout
     start_message = [
         [sg.Text("This is masterpiece of enginnering to make it possible create ")],
         [sg.Text("Obtainable blocks"),
@@ -166,6 +186,7 @@ def create_window():
          sg.Checkbox("survival silk touch", enable_events=True, key="-SURVIVAL SILK TOUCH-")]
     ]
 
+    # layout for file list and search
     file_list = [
         [
             sg.Text("image folder"),
@@ -179,38 +200,29 @@ def create_window():
         ],
     ]
 
+    # layout for image name, size and image itself
     inserted_image = [
         [sg.Text("your image: "), sg.Text(size=(40, 1), key="-TOUT-")],
         [sg.Text("size "), sg.Text(size=(40, 1), key="-IMAGE SIZE-")],
         [sg.Image(key="-IMAGE INSRT-")],
     ]
+
+    # layout for generation button and progressbar
     generate_image_button = [
         [sg.Button("Generate image", key="-GENERATE IMAGE-")],
         [sg.ProgressBar(1000, orientation='h', size=(20, 20), key="-GENERATION PROGRESS-")]
     ]
+
+    # main layout
     layout = [
             [sg.Column(start_message), sg.Column(generate_image_button)],
             [sg.HSeparator()],
             [sg.Column(file_list), sg.VSeparator(), sg.Column(inserted_image)],
     ]
 
-    Window = sg.Window("The mapartinator 3000", layout, finalize=True, right_click_menu=sg.MENU_RIGHT_CLICK_EDITME_VER_EXIT, keep_on_top=True)
+    Window = sg.Window("The mapartinator 3000", layout, finalize=True, right_click_menu=sg.MENU_RIGHT_CLICK_EDITME_VER_EXIT)
     return Window
 
-def get_image_size(fname):
-    im = Image.open(fname)
-    return im.size
-
-def get_image_pixels(fname):
-    im = Image.open(fname)
-    rgbim = im.convert("RGB")
-    pixarr = [[0 for j in range(im.size[1])] for i in range(im.size[0])]
-
-
-    for i in range(rgbim.size[0]):
-        for j in range(rgbim.size[1]):
-            pixarr[i][j] = rgbim.getpixel((i, j))
-    return pixarr
 
 # creating a new image
 def create_prev(fname,
@@ -222,6 +234,7 @@ def create_prev(fname,
     pixelsRGBs = get_image_pixels(fname)
     colorsList = list(set(carpets * obCarpets + silkTouch * obSlkT + NoSilkTouch * obnSlkT))
 
+    # sorting palette by the rgb sum simple bubble sort but whatever
     for i in range(len(colorsList)):
         for j in range(i + 1, len(colorsList)):
             rgbS = get_RGB_sum(colorsList[j])
@@ -229,9 +242,12 @@ def create_prev(fname,
             if prevS > rgbS:
                 colorsList[j], colorsList[j - 1] = colorsList[j - 1], colorsList[j]
 
-
-
+    # creating new image pixels matrix
     newPixelsRGBs = [[0 for i in range(imSize[0])] for i in range(imSize[1])]
+
+    # Image generation
+    # Should check if this color already was processed
+    # Change .putpixel() to something that works faster
 
     for i in range(imSize[0]):
         for j in range(imSize[1]):
@@ -250,14 +266,16 @@ def create_prev(fname,
         for j in range(imSize[1]):
             prevIm.putpixel((i, j), newPixelsRGBs[i][j])
             progressBar.update_bar(500 + i/2)
-    prevIm.save("D:/war thunder/test_output.png")
+    prevIm.save("test.png")
 
 
 
 # saving a .litematica file
+# should create foundation under falling blocks and check for palettes
 #def create_litematica():
 
 
+# main part
 window = create_window()
 progressBar = window["-GENERATION PROGRESS-"]
 bcarp = False
@@ -311,5 +329,4 @@ window.close()
 
 # maps size
 # 128x128 pixels
-# 61 color
 
