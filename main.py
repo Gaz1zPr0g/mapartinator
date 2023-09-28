@@ -245,12 +245,14 @@ def create_window():
 
     # text and checkboxes layout
     start_message = [
-        [sg.Text("This is masterpiece of enginnering to make it possible create ")],
+        [sg.Text("Create your own map art by converting image to litematica file!")],
+        [sg.Button("Select blocks", key="-BLOCK SELECTOR-")],
         [sg.Text("Obtainable blocks"),
          sg.Checkbox("carpets", enable_events=True, key="-CARPETS-"),
          sg.Checkbox("survival no silk touch", enable_events=True, key="-SURVIVAL NO SILK TOUCH-"),
          sg.Checkbox("survival silk touch", enable_events=True, key="-SURVIVAL SILK TOUCH-")],
-        [sg.Checkbox("image preview", enable_events=True, key="-IMAGE PREVIEW-", default=True),
+        [sg.Text("map art previews"),
+         sg.Checkbox("image preview", enable_events=True, key="-IMAGE PREVIEW-", default=True),
          sg.Checkbox("mapart preview", enable_events=True, key="-MAP ART PREVIEW-", default=True)],
     ]
 
@@ -293,16 +295,178 @@ def create_window():
     layout = [
             [sg.Column(start_message), sg.Column(generate_image_button)],
             [sg.HSeparator()],
-            [sg.Column(file_list), sg.VSeparator(), sg.Column(inserted_image, expand_y = True),sg.Column(preview_image, expand_y = True)],
+        
+            [sg.Column(file_list),
+             sg.VSeparator(),
+             sg.Column(inserted_image, expand_y = True),
+             sg.Column(preview_image, expand_y = True)],
+
             [sg.HSeparator()],
     ]
 
     Window = sg.Window("The mapartinator 3000", layout, finalize=True, element_justification="top")
     return Window
 
+def create_selector_window():
+
+    def name(name):
+        size = 10
+        spaces = size - len(name) - 2
+        return sg.Text(name + " " + " " * spaces,size=(size, 1), justification="l", pad=(0, 0))
+
+    sg.theme("dark grey 11")
+    top_text = [
+        [sg.Text("Select which blocks will match next colors")],
+
+    ]
+
+    dropboxes_l = [
+        # 0 - Grass (ID 1)
+        [name("Grass"),
+         sg.Combo([
+                "Grass block",
+                "Slime block"
+         ], default_value="Grass block", size=(30, 1))],
+        # 1 - Sand  (ID 2)
+        [name("Sand"),
+         sg.Combo([
+                "Sand", "Birch planks", "Birch log vertical",
+                "Birch stripped log", "Birch wood",
+                "Birch stripped wood", "Birch sign",
+                "Birch pressure plate", "Birch Trapdoor",
+                "Birch stairs", "Birch slabs", "Birch fence",
+                "Birch fence gate", "Birch door",
+                "Sandstone", "Sandstone stairs", "Sandstone slabs",
+                "Sandstone fence", "Chiseled sandstone", "Smooth sandstone",
+                "Smooth sandstone stairs", "Smooth sandstone slabs",
+                "Cut sandstone", "Cut sandstone slabs"
+        ], default_value="Birch slabs", size=(30, 1))],
+        # 2 - Wool  (ID 3)
+        [name("Wool"),
+         sg.Combo([
+                "Cobweb",
+                "Mushroom stem",
+                "White candle"
+         ], default_value="White candle", size=(30, 1))],
+        # 3 - Fire  (ID 4)
+        [name("Fire"),
+         sg.Combo([
+             "Lava", "TNT",
+             "Fire", "Redstone block"
+         ], default_value="Redstone block", size=(30, 1))],
+        # 4 - Ice   (ID 5)
+        [name("Ice"),
+         sg.Combo([
+             "Ice", "Frosted ice",
+             "Packed ice", "Blue ice"
+         ], default_value="Packed ice", size=(30, 1))],
+        # 5 - Metal (ID 6)
+        [name("Metal"),
+         sg.Combo([
+             "Block of iron", "Iron door",
+             "Brewing stand", "Heavy weight pressure plate",
+             "Iron trapdoor", "lantern",
+             "Anvil", "Grindstone",
+             "Soul fire lantern", "Lodestone"
+         ], default_value="Heavy weight pressure plate", size=(30, 1))],
+        # 6 - Plant (ID 7)
+        [name("Plant"),
+         sg.Combo([
+             "Oak leaves", "Spruce leaves",
+             "Birch leaves", "Jungle leaves",
+             "Acacia leaves", "Dark oak leaves",
+             "Mangrove leaves", "Azalea",
+             "Flowering azalea", "Block of bamboo"
+         ], default_value="Oak leaves", size=(30, 1))],
+        # 7 - Snow  (ID 8)
+        [name("Snow"),
+         sg.Combo([
+             "Snow", "Snow block",
+             "Wool", "Stained glass",
+             "White carpet", "White shulcker box",
+             "Glazed terracotta", "White concrete",
+             "White concrete powder", "Powder snow"
+         ], default_value="Wool", size=(30, 1))],
+        # 8 - Clay (only option) (ID 9)
+        # 9 - Dirt  (ID 10)
+        [name("Dirt"),
+         sg.Combo([
+             "Dirt", "Coarse dirt",
+             "Dirt path", "Rooted dirt",
+             "Granite",
+             "Granite stairs", "Granite slabs",
+             "Granite wall", "Polished granite",
+             "Polished granite stairs", "Polished granite slabs",
+             "Jungle planks", "Jungle log vertical",
+             "Jungle stripped log", "Jungle wood",
+             "Jungle stripped wood", "Jungle sign",
+             "Jungle pressure plate", "Jungle trapdoor",
+             "Jungle stairs", "Jungle slabs",
+             "Jungle fence", "Jungle fence gate",
+             "Jungle door", "Jukebox",
+             "Brown mushroom block", "Packed mud"
+         ], default_value="Jungle slabs", size=(30, 1))],
+        # 10 - Stone (ID 11)
+        [name("Stone"),
+         sg.Combo([
+             "Stone", "Stone stairs", "Stone slabs",
+             "Andesite", "Andesite stairs",
+             "Andesite wall", "Polished andesite",
+             "Polished andesite stairs", "Polished andesite slabs",
+             "Cobblestone", "Cobblestone stairs",
+             "Cobblestone slabs", "Cobblestone wall",
+             "Gravel", "Smooth stone", "Smooth stone slab",
+             "Stone pressure plate",
+             "Stone bricks", "Stone brick stairs",
+             "Stone brick slabs", "Stone brick wall",
+             "Mossy stone bricks", "Mossy stone brick stairs",
+             "Mossy stone brick slabs",
+             "Mossy cobblestone", "Mossy cobblestone stairs",
+             "Mossy cobblestone slabs", "Mossy cobblestone wall",
+             "Gold ore", "Iron ore", "Coal ore",
+             "Diamond ore", "Redstone ore",
+             "Emerald ore", "Copper ore",
+             "Lapis lazuli ore",
+             "Furnace", "Smoker", "Blast Furnace",
+             "Dispenser", "Observer", "Piston",
+             "Sticky piston", "Hopper", "Ender chest",
+         ], default_value="Cobblestone slabs", size=(30, 1))],
+        # 11 - Water (ID 12)
+        [name("Water"),
+         sg.Combo([
+             "Kelp", "Seagrass",
+             "Water", "Bubble Column",
+             "Waterlogged leaves"
+         ], default_value="Water", size=(30, 1))],
+        # 12 - Wood (ID 13)
+        [name("Wood"),
+        sg.Combo([
+            "Oak planks", "Oak log vertical",
+            "Oak stripped log", "Oak wood",
+            "Oak stripped wood", "Oak sign",
+            "Oak door", "Oak pressure plate",
+            "Oak trapdoor", "Oak fence",
+            "Oak fence gate", "Oak stairs",
+            "Oak slabs", "Petrified oak slabs"
+        ], default_value="Oak slabs", size=(30, 1))],
+    ]
+    dropboxes_r = [
+
+    ]
+
+    layout = [
+        [sg.Column(top_text)],
+        [sg.HSeparator()],
+        [sg.Col(dropboxes_l, dropboxes_r),
+        sg.VSeparator()]
+    ]
+    window = sg.Window("box selector", layout, element_justification="top", finalize=True)
+
+    return window
+
 
 # creating a new image
-def create_prev(filename,
+def create_color_list(filename,
                 isCarpetsUsed,
                 isNoSilkTouchUsed,
                 iSSilkTouchUsed,
@@ -319,6 +483,8 @@ def create_prev(filename,
             prevS = get_RGB_sum(colorsList[j - 1])
             if prevS > rgbS:
                 colorsList[j], colorsList[j - 1] = colorsList[j - 1], colorsList[j]
+
+
 
     # creating new image pixels matrix
     newPixelsRGBs = [[(0, 0, 0) for i in range(imSize[0])] for i in range(imSize[1])]
@@ -344,11 +510,15 @@ def create_prev(filename,
                 color = np.array(pixelsRGBs[i][j])
                 distances = np.sqrt(np.sum((colors - color)**2, axis=1))
                 smallestId = np.where(distances == np.amin(distances))
-                newPixelsRGBsnp[j, i] = colors[smallestId]
+
+                try:
+                    newPixelsRGBsnp[j, i] = colors[smallestId]
+                except:
+                    newPixelsRGBsnp[j, i] = colors[smallestId[0][0]]
 
                 alreadyDone[rgb] = newPixelsRGBsnp[j, i]
 
-            progressBar.update_bar((i / imSize[0]) * 100)
+            progressBar.update_bar(int((i / imSize[0]) * 100))
 
 
     window["-GENERATION CONDITION TEXT-"].update("generating preview...")
@@ -361,6 +531,7 @@ def create_prev(filename,
     if isPrevNeeded:
         window["-UPDATE PREVIEW-"].update("temp_prev.png")
     progressBar.update_bar(100)
+    return newPixelsRGBsnp
 
 
 # saving a .litematica file
@@ -377,6 +548,8 @@ isNoSilkTouchUsed = False
 iSSilkTouchUsed = False
 isMapPrevNeeded = True
 isImPrevNeeded = True
+
+pexelsArr = np.array(object="")
 
 filename = "-"
 
@@ -428,7 +601,10 @@ while True:
           filename != "-" and
           (isCarpetsUsed or isNoSilkTouchUsed or iSSilkTouchUsed)):
 
-        create_prev(filename, isCarpetsUsed, isNoSilkTouchUsed, iSSilkTouchUsed, isMapPrevNeeded)
+        pixelsArr = create_color_list(filename, isCarpetsUsed, isNoSilkTouchUsed, iSSilkTouchUsed, isMapPrevNeeded)
+    elif (event == "-BLOCK SELECTOR-"):
+        blockSelectorWindow = create_selector_window()
+
 
     if not isImPrevNeeded:
         window["-IMAGE INSRT-"].update("")
