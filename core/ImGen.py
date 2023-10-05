@@ -1,6 +1,8 @@
 from PIL import Image
 import numpy as np
 import core.ImReader as ir
+# Image generation with minecraft map colors
+
 
 carpets = [
     #R    G    B
@@ -148,16 +150,14 @@ silkTouch = [
 ]
 
 
-def get_RGB_sum(rgbl):
+def get_rgb_sum(rgbl):
     return rgbl[0] + rgbl[1] + rgbl[2]
 
 
-def create_color_list(filename,
-                isCarpetsUsed,
-                isNoSilkTouchUsed,
-                iSSilkTouchUsed,
-                isPrevNeeded,
-                window):
+# returns rgb colors for the map art generator.
+# also creates preview image
+def create_color_list(filename, isCarpetsUsed, isNoSilkTouchUsed, iSSilkTouchUsed,
+                isPrevNeeded, window):
     progressBar = window["-GENERATION PROGRESS-"]
     imSize = ir.get_image_size(filename)
     pixelsRGBs = ir.get_image_pixels(filename)
@@ -167,12 +167,10 @@ def create_color_list(filename,
     # sorting palette by the rgb sum simple bubble sort but whatever
     for i in range(len(colorsList)):
         for j in range(i + 1, len(colorsList)):
-            rgbS = get_RGB_sum(colorsList[j])
-            prevS = get_RGB_sum(colorsList[j - 1])
+            rgbS = get_rgb_sum(colorsList[j])
+            prevS = get_rgb_sum(colorsList[j - 1])
             if prevS > rgbS:
                 colorsList[j], colorsList[j - 1] = colorsList[j - 1], colorsList[j]
-
-
 
     # creating new image pixels matrix
     newPixelsRGBs = [[(0, 0, 0) for i in range(imSize[0])] for i in range(imSize[1])]
@@ -208,7 +206,6 @@ def create_color_list(filename,
 
             progressBar.update_bar(int((i / imSize[0]) * 100))
 
-
     window["-GENERATION CONDITION TEXT-"].update("generating preview...")
 
     prevIm = Image.fromarray(newPixelsRGBsnp.astype("uint8"), "RGB")
@@ -220,4 +217,3 @@ def create_color_list(filename,
         window["-UPDATE PREVIEW-"].update("temp_prev.png")
     progressBar.update_bar(100)
     return newPixelsRGBsnp
-

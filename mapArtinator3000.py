@@ -108,7 +108,7 @@ while True:
             and file.lower().endswith((".png", ".jpeg"))
         ]
         window["-FILE LIST-"].update(filenames)
-    elif event == "-FILE LIST-": # File was checked
+    elif event == "-FILE LIST-":    # File was checked
         try:
             filename = os.path.join(
                 values["-FOLDER-"], values["-FILE LIST-"][0]
