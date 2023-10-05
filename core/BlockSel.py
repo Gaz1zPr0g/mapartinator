@@ -32,15 +32,10 @@ def create_selector_window():
         [sg.Text("█", text_color="#f7e9a3"),
          name("Sand"),
          sg.Combo([
-                "Sand", "Birch planks", "Birch log vertical",
-                "Birch stripped log", "Birch wood",
-                "Birch stripped wood", "Birch sign",
-                "Birch pressure plate", "Birch Trapdoor",
-                "Birch stairs", "Birch slab", "Birch fence",
-                "Birch fence gate", "Birch door",
-                "Sandstone", "Sandstone stairs", "Sandstone slab",
-                "Sandstone fence", "Chiseled sandstone", "Smooth sandstone",
-                "Smooth sandstone stairs", "Smooth sandstone slab",
+                "Sand", "Birch planks", "Birch slab",
+                "Sandstone", "Sandstone slab",
+                "Chiseled sandstone", "Smooth sandstone",
+                "Smooth sandstone slab",
                 "Cut sandstone", "Cut sandstone slab"
          ], default_value="Birch slab", size=(30, 1), k="2")],
 
@@ -58,7 +53,7 @@ def create_selector_window():
          name("Fire"),
          sg.Combo([
              "Lava", "TNT",
-             "Fire", "Redstone block"
+             "Redstone block"
          ], default_value="Redstone block", size=(30, 1), k="4")],
 
         # 5 - Ice   (ID 5)
@@ -74,10 +69,8 @@ def create_selector_window():
          name("Metal"),
          sg.Combo([
              "Block of iron", "Iron door",
-             "Brewing stand", "Heavy weight pressure plate",
-             "Iron trapdoor", "lantern",
-             "Anvil", "Grindstone",
-             "Soul fire lantern", "Lodestone"
+             "Heavy weight pressure plate", "lantern",
+             "Soul fire lantern"
          ], default_value="Heavy weight pressure plate", size=(30, 1), k="6")],
 
         # 7 - Plant (ID 7)
@@ -97,7 +90,7 @@ def create_selector_window():
          sg.Combo([
              "Snow", "Snow block",
              "Wool", "Stained glass",
-             "White carpet", "White shulcker box",
+             "White carpet",
              "Glazed terracotta", "White concrete",
              "White concrete powder", "Powder snow"
          ], default_value="Wool", size=(30, 1), k="8")],
@@ -109,17 +102,10 @@ def create_selector_window():
          sg.Combo([
              "Dirt", "Coarse dirt",
              "Dirt path", "Rooted dirt",
-             "Granite",
-             "Granite stairs", "Granite slab",
-             "Granite wall", "Polished granite",
-             "Polished granite stairs", "Polished granite slab",
-             "Jungle planks", "Jungle log vertical",
-             "Jungle stripped log", "Jungle wood",
-             "Jungle stripped wood", "Jungle sign",
-             "Jungle pressure plate", "Jungle trapdoor",
-             "Jungle stairs", "Jungle slab",
-             "Jungle fence", "Jungle fence gate",
-             "Jungle door", "Jukebox",
+             "Granite", "Granite slab",
+             "Polished granite",
+             "Polished granite slab",
+             "Jungle planks", "Jungle slab",
              "Brown mushroom block", "Packed mud"
          ], default_value="Jungle slab", size=(30, 1), k="10")],
 
@@ -128,33 +114,23 @@ def create_selector_window():
          name("Stone"),
          sg.Combo([
              "Stone", "Stone stairs", "Stone slab",
-             "Andesite", "Andesite stairs",
-             "Andesite wall", "Polished andesite",
-             "Polished andesite stairs", "Polished andesite slab",
-             "Cobblestone", "Cobblestone stairs",
-             "Cobblestone slab", "Cobblestone wall",
+             "Andesite", "Polished andesite",
+             "Polished andesite slab",
+             "Cobblestone", "Cobblestone slab",
              "Gravel", "Smooth stone", "Smooth stone slab",
-             "Stone pressure plate",
-             "Stone bricks", "Stone brick stairs",
-             "Stone brick slab", "Stone brick wall",
-             "Mossy stone bricks", "Mossy stone brick stairs",
-             "Mossy stone brick slab",
-             "Mossy cobblestone", "Mossy cobblestone stairs",
-             "Mossy cobblestone slab", "Mossy cobblestone wall",
+             "Stone bricks", "Stone brick slab",
+             "Mossy stone bricks", "Mossy stone brick slab",
+             "Mossy cobblestone", "Mossy cobblestone slab",
              "Gold ore", "Iron ore", "Coal ore",
              "Diamond ore", "Redstone ore",
              "Emerald ore", "Copper ore",
-             "Lapis lazuli ore",
-             "Furnace", "Smoker", "Blast Furnace",
-             "Dispenser", "Observer", "Piston",
-             "Sticky piston", "Hopper", "Ender chest",
+             "Lapis lazuli ore"
          ], default_value="Cobblestone slab", size=(30, 1), k="11")],
 
         # 12 - Water (ID 12)
         [sg.Text("█", text_color="#4040ff"),
          name("Water"),
          sg.Combo([
-             "Kelp", "Seagrass",
              "Water", "Bubble Column",
              "Waterlogged leaves"
          ], default_value="Water", size=(30, 1), k="12")],
@@ -163,12 +139,7 @@ def create_selector_window():
         [sg.Text("█", text_color="#8f7748"),
          name("Wood"),
          sg.Combo([
-            "Oak planks", "Oak log vertical",
-            "Oak stripped log", "Oak wood",
-            "Oak stripped wood", "Oak sign",
-            "Oak door", "Oak pressure plate",
-            "Oak trapdoor", "Oak fence",
-            "Oak fence gate", "Oak stairs",
+            "Oak planks",
             "Oak slab", "Petrified oak slab"
          ], default_value="Oak slab", size=(30, 1), k="13")],
 
@@ -188,10 +159,7 @@ def create_selector_window():
          name("Podzol"),
          sg.Combo([
              "Podzol", "Spruce planks",
-             "Spruce log vertical", "Spruce wood",
-             "Spruce stripped log", "Spruce stripped wood",
-             "Spruce slab", "Oak log side",
-             "Jungle log side", "Mangrove log side",
+             "Spruce slab",
              "Mangrove roots", "Muddy mangrove roots"
          ], default_value="Spruce slab", size=(30, 1), k="34")],
 
@@ -250,7 +218,7 @@ def create_selector_window():
              "Gray terracotta", "Tuff"
          ], default_value="Gray terracotta", size=(30, 1), k="43")],
 
-        # 44 - Light grey terracotta
+        # 44 - Light gray terracotta
         [sg.Text("█", text_color="#876b62"),
          name("Light gray terracotta"),
          sg.Combo([
@@ -401,14 +369,14 @@ def create_selector_window():
              "Light gray glass"
          ], default_value="Light gray carpet", size=(30, 1), k="22")],
 
-        # 21 - Grey
+        # 21 - Gray
         [sg.Text("█", text_color="#4c4c4c"),
-         name("Grey"),
+         name("Gray"),
          sg.Combo([
-             "Grey wool", "Grey carpet",
-             "Grey concrete", "Grey glazed terracotta",
-             "Grey glass"
-         ], default_value="Grey carpet", size=(30, 1), k="21")],
+             "Gray wool", "Gray carpet",
+             "Gray concrete", "Gray glazed terracotta",
+             "Gray glass"
+         ], default_value="Gray carpet", size=(30, 1), k="21")],
 
         # 29 - Black
         [sg.Text("█", text_color="#191919"),

@@ -1,10 +1,10 @@
 import PySimpleGUI as sg
 import os.path
-import numpy as np
 
 import core.ImGen as ig
 import core.BlockSel as bs
 import core.ImReader as ir
+import core.RegGenerator as rg
 
 
 # Main window GUI
@@ -58,10 +58,12 @@ def create_window():
 
         [sg.ProgressBar(100, orientation='h', size=(20, 20), key="-GENERATION PROGRESS-")]
     ]
-
+    generate_litematica_button = [
+        [sg.Button("Generate litematic file", key="-GNERATE LITEMATICA-")]
+    ]
     # main layout
     layout = [
-        [sg.Column(start_message), sg.Column(generate_image_button)],
+        [sg.Column(start_message), sg.Column(generate_image_button), sg.Column(generate_litematica_button)],
         [sg.HSeparator()],
 
         [sg.Column(file_list),
@@ -79,14 +81,14 @@ def create_window():
 window = create_window()
 progressBar = window["-GENERATION PROGRESS-"]
 
+
 blocks = {}
+colorIDs = []
 isCarpetsUsed = False
 isNoSilkTouchUsed = False
 iSSilkTouchUsed = False
 isMapPrevNeeded = True
 isImPrevNeeded = True
-
-pexelsArr = np.array(object="")
 
 filename = "-"
 
@@ -114,10 +116,10 @@ while True:
             filename = os.path.join(
                 values["-FOLDER-"], values["-FILE LIST-"][0]
             )
+            imSize = ir.get_image_size(filename)
             if isImPrevNeeded:
                 window["-IMAGE INSRT-"].update(filename=filename)
                 window["-IMAGE SIZE-"].update(ir.get_image_size(filename))
-                print(filename)
         except:
             pass
     elif event == "-CARPETS-":
@@ -139,10 +141,12 @@ while True:
           filename != "-" and
           (isCarpetsUsed or isNoSilkTouchUsed or iSSilkTouchUsed)):
 
-        pixelsArr = ig.create_color_list(filename, isCarpetsUsed, isNoSilkTouchUsed,
+        colorIDs = ig.create_color_list(filename, isCarpetsUsed, isNoSilkTouchUsed,
                                          iSSilkTouchUsed, isMapPrevNeeded, window)
-    elif (event == "-BLOCK SELECTOR-"):
+    elif event == "-BLOCK SELECTOR-":
         blocks = bs.create_selector_window()
+    elif event == "-GNERATE LITEMATICA-":
+        rg.create_litematic_file(colorIDs, blocks, imSize[0], imSize[1], "GenTest")
 
     if not isImPrevNeeded:
         window["-IMAGE INSRT-"].update("")

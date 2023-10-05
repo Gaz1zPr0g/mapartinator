@@ -149,6 +149,70 @@ silkTouch = [
     (255, 255, 255)
 ]
 
+IDbyColor = {
+    (127, 178, 56): 1,
+    (247, 233, 163): 2,
+    (199, 199, 199): 3,
+    (255, 0, 0): 4,
+    (160, 160, 255): 5,
+    (167, 167, 167): 6,
+    (0, 124, 0): 7,
+    (255, 255, 255): 8,
+    (164, 168, 184): 9,
+    (151, 109, 77): 10,
+    (112, 112, 112): 11,
+    (64, 64, 255): 12,
+    (143, 119, 72): 13,
+    (255, 252, 245): 14,
+    (216, 127, 51): 15,
+    (178, 76, 216): 16,
+    (102, 153, 216): 17,
+    (229, 229, 51): 18,
+    (127, 204, 25): 19,
+    (242, 127, 165): 20,
+    (76, 76, 76): 21,
+    (153, 153, 153): 22,
+    (76, 127, 153): 23,
+    (127, 63, 178): 24,
+    (51, 76, 178): 25,
+    (102, 76, 51): 26,
+    (102, 127, 51): 27,
+    (153, 51, 51): 28,
+    (25, 25, 25): 29,
+    (250, 238, 77): 30,
+    (92, 219, 213): 31,
+    (74, 128, 255): 32,
+    (0, 217, 58): 33,
+    (129, 86, 49): 34,
+    (112, 2, 0): 35,
+    (209, 177, 161): 36,
+    (159, 82, 36): 37,
+    (149, 87, 108): 38,
+    (112, 108, 138): 39,
+    (186, 133, 36): 40,
+    (103, 117, 53): 41,
+    (160, 77, 78): 42,
+    (57, 41, 35): 43,
+    (135, 107, 98): 44,
+    (87, 92, 92): 45,
+    (122, 73, 88): 46,
+    (76, 62, 92): 47,
+    (76, 50, 35): 48,
+    (76, 82, 42): 49,
+    (142, 60, 46): 50,
+    (37, 22, 16): 51,
+    (189, 48, 49): 52,
+    (148, 63, 97): 53,
+    (92, 25, 29): 54,
+    (22, 126, 134): 55,
+    (58, 142, 140): 56,
+    (86, 44, 62): 57,
+    (20, 180, 133): 58,
+    (100, 100, 100): 59,
+    (216, 175, 147): 60,
+    (127, 167, 150): 61
+}
+
 
 def get_rgb_sum(rgbl):
     return rgbl[0] + rgbl[1] + rgbl[2]
@@ -177,18 +241,16 @@ def create_color_list(filename, isCarpetsUsed, isNoSilkTouchUsed, iSSilkTouchUse
 
     newPixelsRGBsnp = np.array(newPixelsRGBs)
 
+    colorIDsmap = [[0 for i in range(imSize[0])] for i in range(imSize[1])]
+
     alreadyDone = {"255 255 255": (255, 255, 255)}
     # Image generation
-    # Should check if this color already was processed
-    # Change .putpixel() to something that works faster
 
     window["-GENERATION CONDITION TEXT-"].update("changing colors...")
 
     for i in range(imSize[0]):
         for j in range(imSize[1]):
             rgb = f"{pixelsRGBs[i][j][0]} {pixelsRGBs[i][j][1]} {pixelsRGBs[i][j][2]}"
-            revi = imSize[0] - i - 1
-            revj = imSize[1] - j - 1
             if rgb in alreadyDone:
                 newPixelsRGBsnp[j, i] = alreadyDone[rgb]
             else:
@@ -202,7 +264,9 @@ def create_color_list(filename, isCarpetsUsed, isNoSilkTouchUsed, iSSilkTouchUse
                 except:
                     newPixelsRGBsnp[j, i] = colors[smallestId[0][0]]
 
-                alreadyDone[rgb] = newPixelsRGBsnp[j, i]
+            alreadyDone[rgb] = newPixelsRGBsnp[j, i]
+            color = (newPixelsRGBsnp[j, i, 0], newPixelsRGBsnp[j, i, 1], newPixelsRGBsnp[j, i, 2])
+            colorIDsmap[i][j] = IDbyColor[color]
 
             progressBar.update_bar(int((i / imSize[0]) * 100))
 
@@ -216,4 +280,4 @@ def create_color_list(filename, isCarpetsUsed, isNoSilkTouchUsed, iSSilkTouchUse
     if isPrevNeeded:
         window["-UPDATE PREVIEW-"].update("temp_prev.png")
     progressBar.update_bar(100)
-    return newPixelsRGBsnp
+    return colorIDsmap
