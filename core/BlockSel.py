@@ -10,7 +10,6 @@ def create_selector_window():
 
     # creating block palette by importing config file
     blocks = {"0": "Air"}
-
     with open("block_selection.txt", "r") as conf:
         for line in conf:
             blocks[f"{line.split()[0]}"] = line[3:-1]
@@ -20,7 +19,7 @@ def create_selector_window():
         [sg.Text("Select which blocks will match next colors")],
     ]
 
-    dropboxes_l = [
+    dropboxes_l1 = [
         # 1 - Grass
         [sg.Text("█", text_color="#7fb238"),
          name("Grass"),
@@ -182,7 +181,8 @@ def create_selector_window():
              "Birch log side",
              "Quartz block", "Quartz slab"
          ], default_value="Diorite slab", size=(30, 1), k="14")],
-
+    ]
+    dropboxes_l2 = [
         # 34 - Podzol (ID 34)
         [sg.Text("█", text_color="#815631"),
          name("Podzol"),
@@ -271,23 +271,24 @@ def create_selector_window():
          sg.Combo([
              "Brown terracotta", "Dripstone block"
          ], default_value="Brown terracotta", size=(30, 1), k="48")],
+
         # 59 - Deepslate
         [sg.Text("█", text_color="#646464"),
          name("Deepslate"),
          sg.Combo([
-             "Cobbled deepslate",  "Cobbled deepslate slab",
+             "Cobbled deepslate", "Cobbled deepslate slab",
              "Deepslate", "Polished deepslate", "Chiseled deepslate",
              "Deepslate bricks", "Deepslate brick slab",
              "Deepslate tiles", "Deepslates tile slab"
-             "Deepslate slab", "Dripstone block"
+                                "Deepslate slab", "Dripstone block"
          ], default_value="Cobbled deepslate slab", size=(30, 1), k="59")],
+
         # 61 - Glow lichen
         [sg.Text("█", text_color="#7fa796"),
          name("Glow lichen"),
          sg.Combo([
              "Glow lichen", "Verdant froglight"
          ], default_value="Glow lichen", size=(30, 1), k="61")]
-
     ]
     dropboxes_r = [
         # 28 - Color red
@@ -431,7 +432,7 @@ def create_selector_window():
     layout = [
         [sg.Column(top_text)],
         [sg.HSeparator()],
-        [sg.Column(dropboxes_l), sg.VSeparator(), sg.Column(dropboxes_r)]
+        [sg.Column(dropboxes_l1), sg.Column(dropboxes_l2), sg.VSeparator(), sg.Column(dropboxes_r)]
     ]
     window = sg.Window("BlockSelector", layout, element_justification="top", finalize=True)
     
@@ -439,7 +440,8 @@ def create_selector_window():
         event, values = window.read()
         if event == "Exit" or event == sg.WIN_CLOSED:
             break
-        elif event == "1":
-            blocks[1] = values["1"]
+        elif int(event) in range(1, 62):
+            blocks[event] = values[event]
 
     window.close()
+    return blocks

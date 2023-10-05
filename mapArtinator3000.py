@@ -79,6 +79,7 @@ def create_window():
 window = create_window()
 progressBar = window["-GENERATION PROGRESS-"]
 
+blocks = {}
 isCarpetsUsed = False
 isNoSilkTouchUsed = False
 iSSilkTouchUsed = False
@@ -116,6 +117,7 @@ while True:
             if isImPrevNeeded:
                 window["-IMAGE INSRT-"].update(filename=filename)
                 window["-IMAGE SIZE-"].update(ir.get_image_size(filename))
+                print(filename)
         except:
             pass
     elif event == "-CARPETS-":
@@ -140,7 +142,7 @@ while True:
         pixelsArr = ig.create_color_list(filename, isCarpetsUsed, isNoSilkTouchUsed,
                                          iSSilkTouchUsed, isMapPrevNeeded, window)
     elif (event == "-BLOCK SELECTOR-"):
-        bs.create_selector_window()
+        blocks = bs.create_selector_window()
 
     if not isImPrevNeeded:
         window["-IMAGE INSRT-"].update("")
