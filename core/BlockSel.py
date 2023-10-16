@@ -9,7 +9,7 @@ def create_selector_window():
         return sg.Text(n + " " + " " * spaces,size=(size, 1), justification="l", pad=(0, 0))
 
     # creating block palette by importing config file
-    blocks = {"0": "Air"}
+    blocks = {}
     with open("block_selection.txt", "r") as conf:
         for line in conf:
             blocks[f"{line.split()[0]}"] = line[3:-1]
@@ -71,7 +71,7 @@ def create_selector_window():
              "Block of iron", "Iron door",
              "Heavy weight pressure plate", "lantern",
              "Soul fire lantern"
-         ], default_value="Heavy weight pressure plate", size=(30, 1), k="6")],
+         ], default_value="Heavy weighted pressure plate", size=(30, 1), k="6")],
 
         # 7 - Plant (ID 7)
         [sg.Text("█", text_color="#007c00"),
@@ -89,11 +89,11 @@ def create_selector_window():
          name("Snow"),
          sg.Combo([
              "Snow", "Snow block",
-             "Wool", "Stained glass",
+             "White wool", "Stained glass",
              "White carpet",
              "Glazed terracotta", "White concrete",
              "White concrete powder", "Powder snow"
-         ], default_value="Wool", size=(30, 1), k="8")],
+         ], default_value="White carpet", size=(30, 1), k="8")],
 
         # 9 - Clay (only option) (ID 9)
         # 10 - Dirt  (ID 10)
@@ -402,7 +402,7 @@ def create_selector_window():
         [sg.HSeparator()],
         [sg.Column(dropboxes_l1), sg.Column(dropboxes_l2), sg.VSeparator(), sg.Column(dropboxes_r)]
     ]
-    window = sg.Window("BlockSelector", layout, element_justification="top", finalize=True)
+    window = sg.Window("BlockSelector", layout, element_justification="top", finalize=True,icon="mapArtinator3000.ico")
     
     while True:
         event, values = window.read()

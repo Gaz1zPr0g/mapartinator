@@ -1,11 +1,11 @@
-1  Grass
-2  Birch slabs
+1  Grass block
+2  Birch slab
 3  White candle
 4  Redstone block
 5  Packed Ice
-6  Heavy weight pressure plate
+6  Heavy weighted pressure plate
 7  Oak leaves
-8  Wool
+8  White carpet
 9  Clay
 10 Jungle slab
 11 Cobblestone slab
@@ -18,8 +18,8 @@
 18 Yellow carpet
 19 Lime carpet
 20 Pink carpet
-21 Grey carpet
-22 Light grey carpet
+21 Gray carpet
+22 Light gray carpet
 23 Cyan carpet
 24 Purple carpet
 25 Blue carpet
@@ -28,9 +28,9 @@
 28 Red carpet
 29 Black carpet
 30 Light weighted pressure plate
-31 Block of diamond
-32 Block of Lapis Lazuli
-33 Block of Emerald
+31 Diamond block
+32 Lapis block
+33 Emerald block
 34 Spruce slab
 35 Netherrack
 36 White terracotta
@@ -52,10 +52,10 @@
 52 Crimson Nylium
 53 Crimson slab
 54 Crimson hyphae
-55 Warped nylium slab
+55 Warped nylium
 56 Warped slab
 57 Warped hyphae
 58 Warped wart block
 59 Cobbled deepslate slab
-60 Block of raw iron
+60 Raw iron block
 61 Glow lichen

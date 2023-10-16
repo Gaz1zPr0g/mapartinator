@@ -71,10 +71,11 @@ def create_window():
          sg.Column(inserted_image, expand_y=True),
          sg.Column(preview_image, expand_y=True)],
 
-        [sg.HSeparator()],
+        [sg.HSeparator()]
     ]
 
-    Window = sg.Window("The mapartinator 3000", layout, finalize=True, element_justification="top")
+    Window = sg.Window("The mapartinator 3000", layout, finalize=True,
+                       element_justification="top", icon="mapArtinator3000.ico")
     return Window
 
 
@@ -82,15 +83,26 @@ window = create_window()
 progressBar = window["-GENERATION PROGRESS-"]
 
 
+os.mkdir(os.path.join(os.path.dirname(os.path.realpath(__file__)), "litematics"))
+
 blocks = {}
+with open("block_selection.txt", "r") as conf:
+    for line in conf:
+        blocks[f"{line.split()[0]}"] = line[3:-1]
+
+
 colorIDs = []
+imageName = "-"
+imSize = [0, 0]
+filename = "-"
+
 isCarpetsUsed = False
 isNoSilkTouchUsed = False
 iSSilkTouchUsed = False
 isMapPrevNeeded = True
 isImPrevNeeded = True
 
-filename = "-"
+isImGenerated = False
 
 while True:
     event, values = window.read()
@@ -120,6 +132,7 @@ while True:
             if isImPrevNeeded:
                 window["-IMAGE INSRT-"].update(filename=filename)
                 window["-IMAGE SIZE-"].update(ir.get_image_size(filename))
+                imageName = filename[filename.find('\\')+1:filename.find('.')]
         except:
             pass
     elif event == "-CARPETS-":
@@ -143,10 +156,12 @@ while True:
 
         colorIDs = ig.create_color_list(filename, isCarpetsUsed, isNoSilkTouchUsed,
                                          iSSilkTouchUsed, isMapPrevNeeded, window)
+        isImGenerated = True
     elif event == "-BLOCK SELECTOR-":
         blocks = bs.create_selector_window()
-    elif event == "-GNERATE LITEMATICA-":
-        rg.create_litematic_file(colorIDs, blocks, imSize[0], imSize[1], "GenTest")
+    elif event == "-GNERATE LITEMATICA-" and isImGenerated:
+        imageName += 'c' * isCarpetsUsed + "st" * iSSilkTouchUsed + "nst" * isNoSilkTouchUsed
+        rg.create_litematic_file(colorIDs, blocks, imSize[0], imSize[1], imageName)
 
     if not isImPrevNeeded:
         window["-IMAGE INSRT-"].update("")
