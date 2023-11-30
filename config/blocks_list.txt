@@ -1,0 +1,61 @@
+1 Grass_block Slime_block #7fb238 st
+2 Sand Birch_planks Birch_slab Sandstone Sandstone_slab Chiseled_sandstone Smooth_sandstone Smooth_sandstone_slab Cut_sandstone Cut_sandstone_slab #f7e9a3 nst
+3 Cobweb Mushroom_stem White_candle #c7c7c7 st
+4 Lava TNT Redstone_block #ff0000 nst
+5 Ice Frosted_ice Packed_ice Blue_ice #a0a0ff st
+6 Block_of_iron Iron_door Heavy_weighted_pressure_plate lantern Soul_fire_lantern #a7a7a7 nst
+7 Oak_leaves Spruce_leaves Birch_leaves Jungle_leaves Acacia_leaves Dark_oak_leaves Mangrove_leaves Azalea Flowering_azalea Block_of_bamboo #007c00 st
+8 Snow Snow_block White_wool Stained_glass White_carpet Glazed_terracotta White_concrete White_concrete_powder Powder_snow #ffffff c
+9 Clay #a4a8b8 nst
+10 Dirt Coarse_dirt Dirt_path Rooted_dirt Granite Granite_slab Polished_granite Polished_granite_slab Jungle_planks Jungle_slab Brown_mushroom_block Packed_mud #976d4d nst
+11 Stone Stone_stairs Stone_slab Andesite Polished_andesite Polished_andesite_slab Cobblestone Cobblestone_slab Gravel Smooth_stone Smooth_stone_slab Stone_bricks Stone_brick_slab Mossy_stone_bricks Mossy_stone_brick_slab Mossy_cobblestone Mossy_cobblestone_slab Gold_ore Iron_ore Coal_ore Diamond_ore Redstone_ore Emerald_ore Copper_ore Lapis_lazuli_ore #707070 nst
+12 Water Bubble_Column Waterlogged_leaves #4040ff nst
+13 Oak_planks Oak_slab Petrified_oak_slab #8f7748 nst
+14 Diorite Diorite_slab Polished_diorite Polished_diorite_slab Birch_log_side Quartz_block Quartz_slab #fffcf5 nst
+15 Acacia_planks Acacia_slab Orange_wool Orange_carpet Orange_concrete Orange_glazed_terracotta Orange_glass Red_sand #d87f33 c
+16 Magenta_wool Magenta_carpet Magenta_concrete Magenta_glazed_terracotta Magenta_glass Purpur_slab Purpur_block Purpur_pillar #b24cd8 c
+17 Light_blue_wool Light_blue_carpet Light_blue_concrete Light_blue_glazed_terracotta Light_blue_glass #6699d8 c
+18 Yellow_wool Yellow_carpet Yellow_concrete Yellow_glazed_terracotta Yellow_glass Hay_bale #e5e533 c
+19 Lime_wool Lime_carpet Lime_concrete Lime_glazed_terracotta Lime_glass Melon #7fcc19 c
+20 Pink_wool Pink_carpet Pink_concrete Pink_glazed_terracotta Pink_glass #f27fa5 c
+21 Gray_wool Gray_carpet Gray_concrete Gray_glazed_terracotta Gray_glass #4c4c4c c
+22 Light_gray_wool Light_gray_carpet Light_gray_concrete Light_gray_glazed_terracotta Light_gray_glass #999999 c
+23 Cyan_wool Cyan_carpet Cyan_concrete Cyan_glazed_terracotta Cyan_glass #4c7f99 c
+24 Purple_wool Purple_carpet Purple_concrete Purple_glazed_terracotta Purple_glass #7f3fb2 c
+25 Blue_wool Blue_carpet Blue_concrete Blue_glazed_terracotta Blue_glass #334cb2 c
+26 Brown_wool Brown_carpet Brown_concrete Brown_glazed_terracotta Brown_glass #664c33 c
+27 Green_wool Green_carpet Green_concrete Green_glazed_terracotta Green_glass Moss_block Moss_carpet #667f33 c
+28 Red_wool Red_carpet Red_glass Red_concrete Red_glazed_terracotta #993333 c
+29 Black_wool Black_carpet Black_concrete Black_glazed_terracotta Black_glass #191919 c
+30 Gold_block Light_weighted_pressure_plate #faee4d nst
+31 Diamond_block #5cdbd5 nst
+32 Lapis_block #4a80ff nst
+33 Emerald_block #00d93a nst
+34 Podzol Spruce_planks Spruce_slab Mangrove_roots Muddy_mangrove_roots #815631 nst
+35 Netherrack Nether_brick Nether_brick_slab Magma_block Red_nether_bricks Red_nether_bricks_slab #700200 nst
+36 White_terracotta Calcite #d1b1a1 nst
+37 Orange_terracotta #9f5224 nst
+38 Magenta_terracotta #95576c nst
+39 Light_blue_terracotta #706c8a nst
+40 Yellow_terracotta #ba8524 nst
+41 Lime_terracotta #677535 nst
+42 Pink_terracotta #a04d4e nst
+43 Gray_terracotta Tuff #392923 nst
+44 Light_gray_terracotta Mud_brick_slab Waxed_exposed_copper Waxed_exposed_cut_copper_slab #876b62 nst
+45 Cyan_terracotta Mud #575c5c nst
+46 Purple_terracotta #7a4958 nst
+47 Blue_terracotta #4c3e5c nst
+48 Brown_terracotta Dripstone_block #4c3223 nst
+49 Green_terracotta #4c522a nst
+50 Red_terracotta #8e3c2e nst
+51 Black_terracotta #251610 nst
+52 Crimson_Nylium #bd3031 nst
+53 Crimson_planks Crimson_slab #943f61 nst
+54 Crimson_hyphae #5c191d nst
+55 Warped_nylium Oxidized_copper Oxidized_cut_copper_slab Waxed_oxidized_copper Waxed_oxidized_cut_copper_slab #167e86 nst
+56 Warped_planks Warped_slab Stem Stripped_stem Waxed_weathered_copper Waxed_weathered_cut_copper_slab #3a8e8c nst
+57 Warped_hyphae #562c3e nst
+58 Warped_wart_block #14b485 nst
+59 Cobbled_deepslate Cobbled_deepslate_slab Deepslate Polished_deepslate Chiseled_deepslate Deepslate_bricks Deepslate_brick_slab Deepslate_tiles Deepslates_tile_slabDeepslate_slab Dripstone_block #646464 nst
+60 Raw_iron_block #d8af93 nst
+61 Glow_lichen Verdant_froglight #7fa796 st
