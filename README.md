@@ -9,7 +9,7 @@ Mapartinator is the program that can generate mapart from **any** image, with **
 
 1. Check the palette selection on the `Settings` tab. \
 \
-   ![image](https://github.com/Gaz1zPr0g/mapartinator/assets/81079946/68820685-d39d-47a9-9a1e-8e0a8a9266ec)
+   ![image](https://github.com/Gaz1zPr0g/mapartinator/assets/81079946/a8309d94-e9fc-4087-8af5-c16b071f7796)
 
 
 2. Import image in `Generator` tab
